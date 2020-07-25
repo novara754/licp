@@ -4,6 +4,10 @@
 
 #define CURRENT_CHAR(state) ((state)->source[(state)->pos])
 
+bool is_ident_char(char c);
+token get_number_token(lexer_state *state);
+token get_ident_token(lexer_state *state);
+
 lexer_state make_lexer(const char *source)
 {
     return (lexer_state){
@@ -20,10 +24,6 @@ token make_token(token_kind kind, size_t start, size_t len)
         .len = len,
     };
 }
-
-token get_number_token(lexer_state *state);
-bool is_ident_char(char c);
-token get_ident_token(lexer_state *state);
 
 token next_token(lexer_state *state)
 {
