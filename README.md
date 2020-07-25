@@ -5,6 +5,8 @@ A basic Lisp implemented in C.
 Run `make` to compile the project and then run the resulting `licp` executable
 to start a REPL which can evaluate some basic arithmetic:
 
+It supports the functions `+` and `-` which both accept up to 5 arguments.
+
 ```
 $ make && ./licp
 > (+ 1 2 3)
