@@ -15,7 +15,7 @@ typedef enum
 typedef struct
 {
     token_kind kind;
-    size_t start;
+    const char *source;
     size_t len;
 } token;
 

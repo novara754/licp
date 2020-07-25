@@ -1,4 +1,5 @@
-#include "lexer.h"
+#include "eval.h"
+#include "parser.h"
 #include <stdbool.h>
 #include <stdio.h>
 
@@ -35,14 +36,11 @@ void repl(void)
         if (input[0] == 0 || input[0] == '\n')
             continue;
 
-        lexer_state lexer = make_lexer(input);
-        token t;
-        do
-        {
-            t = next_token(&lexer);
-            printf("token(kind=%s, start=%ld, len=%ld) = '%.*s'\n", token_kind_str(t.kind), t.start, t.len, (int)t.len,
-                   input + t.start);
-        } while (t.kind != TOKEN_EOF);
+        expr_node *ast = parse(input);
+        if (ast != NULL)
+            printf("%d\n", eval(ast));
+        else
+            puts("invalid input");
     }
 }
 
