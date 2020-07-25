@@ -4,9 +4,9 @@
 
 #define CURRENT_CHAR(state) ((state)->source[(state)->pos])
 
-bool is_ident_char(char c);
-token get_number_token(lexer_state *state);
-token get_ident_token(lexer_state *state);
+static bool is_ident_char(char c);
+static token get_number_token(lexer_state *state);
+static token get_ident_token(lexer_state *state);
 
 lexer_state make_lexer(const char *source)
 {
@@ -16,7 +16,7 @@ lexer_state make_lexer(const char *source)
     };
 }
 
-token make_token(token_kind kind, size_t start, size_t len)
+static token make_token(token_kind kind, size_t start, size_t len)
 {
     return (token){
         .kind = kind,
@@ -48,7 +48,7 @@ token next_token(lexer_state *state)
     return make_token(TOKEN_UNKNOWN, state->pos++, 1);
 }
 
-token get_number_token(lexer_state *state)
+static token get_number_token(lexer_state *state)
 {
     size_t start = state->pos;
     while (isdigit(CURRENT_CHAR(state)))
@@ -56,12 +56,12 @@ token get_number_token(lexer_state *state)
     return make_token(TOKEN_NUMBER, start, state->pos - start);
 }
 
-bool is_ident_char(char c)
+static bool is_ident_char(char c)
 {
     return c != '(' && c != ')' && !isspace(c) && isprint(c);
 }
 
-token get_ident_token(lexer_state *state)
+static token get_ident_token(lexer_state *state)
 {
     size_t start = state->pos;
     while (is_ident_char(CURRENT_CHAR(state)))
