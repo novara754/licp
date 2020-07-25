@@ -27,11 +27,11 @@ token get_ident_token(lexer_state *state);
 
 token next_token(lexer_state *state)
 {
+    while (CURRENT_CHAR(state) != 0 && isspace(CURRENT_CHAR(state)))
+        state->pos++;
+
     if (CURRENT_CHAR(state) == 0)
         return make_token(TOKEN_EOF, state->pos, 0);
-
-    while (isspace(CURRENT_CHAR(state)))
-        state->pos++;
 
     switch (CURRENT_CHAR(state))
     {
