@@ -38,7 +38,10 @@ void repl(void)
 
         expr_node *ast = parse(input);
         if (ast != NULL)
+        {
             printf("%d\n", eval(ast));
+            free_ast(ast);
+        }
         else
             puts("invalid input");
     }
