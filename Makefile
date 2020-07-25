@@ -1,6 +1,6 @@
 CFLAGS = -Wall -Wpedantic -Werror --std=c11
 
-OBJS = main.o
+OBJS = main.o lexer.o
 OBJS := $(OBJS:%.o=src/%.o)
 
 .PHONY: all

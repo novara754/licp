@@ -1,0 +1,4 @@
+BasedOnStyle: Microsoft
+AllowShortCaseLabelsOnASingleLine: true
+IndentCaseLabels: true
+AlignEscapedNewlines: Left
